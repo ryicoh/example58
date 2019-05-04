@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-web
+  namespace: example58
+spec:
+  containers:
+    - name: sample-web
+      image: miaulne/sample-web-golang
+      command: ["sh", "-c", "go build -o /usr/bin/sample-web && sample-web"]
+      ports:
+        - containerPort: 8080

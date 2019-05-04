@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: example58
+  name: sample-web-deployment
+  labels:
+    app: sample-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      pods: sample-web-pod
+  template:
+    metadata:
+      name: sample-web-pod
+      labels:
+        pods: sample-web-pod
+    spec:
+      containers:
+        - name: sample-web
+          image: miaulne/sample-web-golang
+          command: ["sh", "-c", "go build -o /usr/bin/sample-web && sample-web"]
+          ports:
+            - containerPort: 8080
+
